@@ -1,0 +1,423 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+#background-video {
+  position: fixed; /* Ensures the video stays fixed as the background */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Ensures the video covers the entire screen */
+  z-index: -1; /* Sends the video behind other content */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #fff; /* Adjusts the text color to contrast the video */
+}
+
+
+.wrapper {
+  position: relative;
+  overflow-x: auto; /* Ensure horizontal scrolling */
+  height: 100vh;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  padding-right: 20vw; /* Ensure space on the right */
+}
+
+.card {
+  overflow: hidden;
+  min-width: 30vw;
+  height: 40vh;
+  position: sticky;
+  left: 10vw;
+  top: 5vh;
+  border: 1px solid #ccc;
+  box-shadow: 5px -5px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #333;
+  padding: 40px;
+  border-radius: 10px;
+  margin-bottom: 10vw;
+  margin-right: 10vw; /* Adjusted margin-right */
+}
+
+.card:last-child {
+  margin-right: 0; /* Remove margin on the last card */
+}
+
+@for $i from 1 through 8 {
+  .card:nth-child(#{$i}n) {
+    left: $i * 20px; /* Controlled horizontal positioning */
+    top: 10px; /* Fixed top positioning */
+    transform: rotate($i * 5deg); /* Controlled rotation */
+  }
+}
+
+.card-title {
+  color: blue;
+}
+
+h1 {
+  text-align: center; /* align text to the center */
+  font-size: 2.5rem; /* Adjust the size to make it more prominent */
+  color: #333; /* Darker color for contrast */
+  margin-top: 20px; /* Adds space at the top */
+  font-family: 'Arial', sans-serif; /* Sets a clean font */
+  padding: 10px 0; /* Adds padding to make it look balanced */
+}
+
+.intro-text {
+  text-align: center; /* align text to the left */
+  font-size: 1.2rem; /* Slightly larger than the default paragraph size */
+  color: #555; /* A softer gray color for the text */
+  margin: 10px 0 20px 0; /* Adds space around the text */
+  line-height: 1.6; /* Improves readability */
+  max-width: 800px; /* Limits the width for better readability */
+  margin-left: auto; /* Centers the block */
+  margin-right: auto; /* Centers the block */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.form-body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.form-container {
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form-container .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  color: #333;
+}
+
+.form-container .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+  border-color: #9b59b6;
+}
+
+form .gender-details .gender-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+form .category {
+  display: flex;
+  width: 80%;
+  margin: 14px 0;
+  justify-content: space-between;
+}
+
+form .category label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+form .category label .dot {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two,
+#dot-3:checked ~ .category label .three {
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+
+form input[type="radio"] {
+  display: none;
+}
+
+form .button {
+  height: 45px;
+  margin: 35px 0;
+}
+
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+form .button input:hover {
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+@media(max-width: 584px) {
+  .form-container {
+    max-width: 100%;
+  }
+  
+  form .user-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  form .category {
+    width: 100%;
+  }
+  
+  .content form .user-details {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  
+  .user-details::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+@media(max-width: 459px) {
+  .form-container .content .category {
+    flex-direction: column;
+  }
+}
+
+.claims-list {
+  list-style: none;
+  padding: 0;
+}
+
+.claim-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+}
+
+.claim-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 10px;
+}
+
+.claim-description {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 10px;
+}
+
+.claim-date {
+  font-size: 14px;
+  color: #888;
+}
+
+.track-button {
+  display: inline-block;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.track-button:hover {
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+.claim-status {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  margin: 0 0 10px;
+  display: block;
+}
+
+.approve-button {
+  display: inline-block;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient */
+  text-align: center;
+  margin-top: 10px;
+}
+
+.approve-button:hover {
+  background: linear-gradient(-135deg, #4caf50, #81c784); /* Green gradient */
+}
+
+.reject-button {
+  display: inline-block;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #f44336, #ef5350); /* Red gradient */
+  text-align: center;
+  margin-top: 10px;
+}
+
+.reject-button:hover {
+  background: linear-gradient(-135deg, #f44336, #ef5350); /* Red gradient */
+}
+
+.text-area {
+  width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.text-area:focus {
+  border-color: #9b59b6;
+}
+
+.file-upload {
+  display: none; /* Hide the default file input */
+}
+
+.file-upload-label {
+  display: inline-block;
+  height: 45px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 45px;
+  transition: all 0.3s ease;
+}
+
+.file-upload-label:hover {
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+/* Optional: Style for file input text */
+.file-upload-text {
+  margin-top: 10px;
+  color: #333;
+  font-size: 14px;
+}
