@@ -81,3 +81,11 @@ __pycache__/
 .config/
 coverage/
 .rbenv-vars
+
+# Media files
+wwwroot/Media/*.mp4
+wwwroot/Media/*.avi
+wwwroot/Media/*.mkv
+
+# Images
+wwwroot/Media/*.jpg
