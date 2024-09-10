@@ -72,3 +72,37 @@ The form is designed to layout the information in a clear and concise manner. Th
 - The system is limited to lecturers and administrators only.
 - The system must adhere to data protection regulations.
 - Security standards must be maintained to protect user data.
+
+# Project Plan
+
+## Task List and Timeline
+
+1. **Research and Planning:** Doing the necessary research and planning to understand the requirements of the system. This will be achieved by reading the functional requirements and understanding the user needs.
+   **Estimated Time:** 2 days.
+   
+2. **Database Design:** Designing the database structure and layout of the tables to best suit the requirements of the system. This will be achieved by creating a UML class diagram.
+   **Estimated Time:** 3 days.
+   
+3. **GUI Design:** Designing a user friendly and intuitive GUI for the system making it easy for users to navigate. This will be achieved by creating a non-functional prototype of the GUI.
+   **Estimated Time:** 3 days.
+   
+4. **GUi Development:** Developing the GUI using ASP.NET Core MVC. in html, css and javascript. This will be achieved by creating the front-end of the system with the necessary buttons and input fields.
+   **Estimated Time:** 4 days.
+
+5. **Database Development:** Create all the tables and relationships in the database. This will be achieved by setting up a database service and writing the necessary sql queries.
+   **Estimated Time:** 3 days.
+   
+6. **Backend Development:** Develop the backend functionality for the existing GUI to make it functional. This will be achieved by programming the necessary views, controllers and models.
+   **Estimated Time:** 5 days.
+   
+7. **Testing:** Testing the Systems functionality and ensuring that it meets the requirements and the code functions as expected. This will be achieved by writing the necessary unit tests and ensuring the tests pass and the code is bug free.
+   **Estimated Time:** 2 days.
+
+## Dependencies
+
+- Research and Planning will be completed before Database Design.
+- Database Design will be completed before GUI Design.
+- GUI Design will be completed before GUI Development.
+- GUI Development will be completed before Backend Development.
+- Backend Development will be completed before Testing.
+- Testing will be completed before the final submission.
