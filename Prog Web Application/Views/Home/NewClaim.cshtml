@@ -1,0 +1,76 @@
+﻿@model Prog_Web_Application.Models.Claim
+
+@{
+    ViewData["Title"] = "New Claim";
+}
+
+<h2>Submit New Claim</h2>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Claim Submission Form</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <!-- Claim submission form container -->
+    <div class="form-body">
+        <div class="form-container">
+            <div class="title">Claim Submission</div>
+            <div class="content">
+                <form asp-controller="Claim" asp-action="CreateClaim" method="post" enctype="multipart/form-data">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span class="details">Full Name</span>
+                            <input type="text" name="FullName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Username</span>
+                            <input type="text" name="Username" placeholder="Enter your username" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Email</span>
+                            <input type="email" name="Email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Phone Number</span>
+                            <input type="text" name="Phone" placeholder="Enter your number" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Claim Description</span>
+                            <input type="text" name="ClaimDescription" placeholder="Enter your claim" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Hours Worked</span>
+                            <input type="number" name="HoursWorked" placeholder="Enter your hours worked" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Hourly Rate</span>
+                            <input type="number" step="0.01" name="HourlyRate" placeholder="Enter your hourly rate" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Upload File</span>
+                            <label for="file-upload" class="file-upload-label">Choose File</label>
+                            <input type="file" name="uploadedFile" class="file-upload" id="file-upload" onchange="displayFileName()" />
+                            <span class="file-upload-text" id="file-name-label">No file chosen</span>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function displayFileName() {
+            const fileInput = document.getElementById('file-upload');
+            const fileNameLabel = document.getElementById('file-name-label');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
+            fileNameLabel.textContent = fileName; 
+        }
+    </script>
+    <script src="sites.js"></script>
+</body>
+</html>

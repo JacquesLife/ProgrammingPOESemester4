@@ -12,40 +12,37 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-
 html, body {
   margin: 0;
   height: 100%;
 }
 
 #background-video {
-  position: fixed; /* Ensures the video stays fixed as the background */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  object-fit: cover; /* Ensures the video covers the entire screen */
-  z-index: -1; /* Sends the video behind other content */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  color: #fff; /* Adjusts the text color to contrast the video */
+  color: #fff;
 }
-
 
 .wrapper {
   position: relative;
-  overflow-x: auto; /* Ensure horizontal scrolling */
+  overflow-x: auto;
   height: 100vh;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  padding-right: 20vw; /* Ensure space on the right */
+  align-items: flex-start;
+  padding-right: 20vw;
 }
 
 .card {
@@ -62,19 +59,11 @@ body {
   padding: 40px;
   border-radius: 10px;
   margin-bottom: 10vw;
-  margin-right: 10vw; /* Adjusted margin-right */
+  margin-right: 10vw;
 }
 
 .card:last-child {
-  margin-right: 0; /* Remove margin on the last card */
-}
-
-@for $i from 1 through 8 {
-  .card:nth-child(#{$i}n) {
-    left: $i * 20px; /* Controlled horizontal positioning */
-    top: 10px; /* Fixed top positioning */
-    transform: rotate($i * 5deg); /* Controlled rotation */
-  }
+  margin-right: 0;
 }
 
 .card-title {
@@ -82,23 +71,23 @@ body {
 }
 
 h1 {
-  text-align: center; /* align text to the center */
-  font-size: 2.5rem; /* Adjust the size to make it more prominent */
-  color: #333; /* Darker color for contrast */
-  margin-top: 20px; /* Adds space at the top */
-  font-family: 'Arial', sans-serif; /* Sets a clean font */
-  padding: 10px 0; /* Adds padding to make it look balanced */
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-top: 20px;
+  font-family: 'Arial', sans-serif;
+  padding: 10px 0;
 }
 
 .intro-text {
-  text-align: center; /* align text to the left */
-  font-size: 1.2rem; /* Slightly larger than the default paragraph size */
-  color: #555; /* A softer gray color for the text */
-  margin: 10px 0 20px 0; /* Adds space around the text */
-  line-height: 1.6; /* Improves readability */
-  max-width: 800px; /* Limits the width for better readability */
-  margin-left: auto; /* Centers the block */
-  margin-right: auto; /* Centers the block */
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin: 10px 0 20px 0;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -276,6 +265,9 @@ form .button input:hover {
 .claims-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .claim-item {
@@ -345,13 +337,13 @@ form .button input:hover {
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient */
+  background: linear-gradient(135deg, #4caf50, #81c784);
   text-align: center;
   margin-top: 10px;
 }
 
 .approve-button:hover {
-  background: linear-gradient(-135deg, #4caf50, #81c784); /* Green gradient */
+  background: linear-gradient(-135deg, #4caf50, #81c784);
 }
 
 .reject-button {
@@ -366,13 +358,13 @@ form .button input:hover {
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #f44336, #ef5350); /* Red gradient */
+  background: linear-gradient(135deg, #f44336, #ef5350);
   text-align: center;
   margin-top: 10px;
 }
 
 .reject-button:hover {
-  background: linear-gradient(-135deg, #f44336, #ef5350); /* Red gradient */
+  background: linear-gradient(-135deg, #f44336, #ef5350);
 }
 
 .text-area {
@@ -391,7 +383,7 @@ form .button input:hover {
 }
 
 .file-upload {
-  display: none; /* Hide the default file input */
+  display: none;
 }
 
 .file-upload-label {
@@ -415,9 +407,135 @@ form .button input:hover {
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
 
-/* Optional: Style for file input text */
 .file-upload-text {
   margin-top: 10px;
   color: #333;
   font-size: 14px;
+}
+
+.no-claims {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.form-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.claims-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.claim-item {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.claim-title {
+  font-size: 1.25rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.claim-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.claim-description {
+  font-size: 1rem;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+}
+
+.claim-details p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.claim-details .label {
+  font-weight: bold;
+  color: #7f8c8d;
+}
+
+.claim-details .value {
+  color: #2c3e50;
+}
+
+.status-pending {
+  color: #f39c12;
+}
+
+.status-approved {
+  color: #27ae60;
+}
+
+.status-rejected {
+  color: #c0392b;
+}
+
+.claim-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.no-claims {
+  text-align: center;
+  color: #7f8c8d;
+  font-style: italic;
 }
