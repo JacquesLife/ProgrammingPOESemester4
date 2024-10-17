@@ -32,8 +32,9 @@ namespace Prog_Web_Application.Tests
             _context.Dispose();
         }
 
+        // Test method for the CreateUser action method
         [TestMethod]
-        public async Task CreateUser_ValidModel_ReturnsRedirectToAction()
+        public async Task CreateUser_ValidModel_ReturnsRedirectToIndex()
         {
             // Arrange
             var user = new User
@@ -52,10 +53,11 @@ namespace Prog_Web_Application.Tests
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectToActionResult));
             var redirectToActionResult = (RedirectToActionResult)result;
+            // Check if the action name is "Index" and the controller name is "Home"
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
         
-    
+        // Test method for the CreateUser action method with duplicate email
         [TestMethod]
         public async Task CreateUser_Duplicate_Email_Returns_Error()
         {
@@ -90,6 +92,7 @@ namespace Prog_Web_Application.Tests
             var viewResult = (ViewResult)result;
             Assert.AreEqual("/Views/Home/NewUser.cshtml", viewResult.ViewName);
             Assert.IsFalse(_controller.ModelState.IsValid); 
+            // Check if the ModelState contains an error for the email field
             Assert.IsTrue(_controller.ModelState["Email"].Errors.Any()); 
         }
     }

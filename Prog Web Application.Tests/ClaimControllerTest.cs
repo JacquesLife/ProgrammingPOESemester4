@@ -22,10 +22,11 @@ namespace Prog_Web_Application.Tests
         [TestInitialize]
         public void Setup()
         {
+            // Create an in-memory database for testing
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "ClaimTestDatabase")
                 .Options;
-
+    
             _context = new ApplicationDbContext(options);
             _loggerMock = new Mock<ILogger<ClaimController>>();
             _controller = new ClaimController(_context, _loggerMock.Object);
@@ -38,8 +39,9 @@ namespace Prog_Web_Application.Tests
             _context.Dispose();
         }
 
+        // Test method for the CreateClaim action method
         [TestMethod]
-        public async Task CreateClaim_ValidClaim_ReturnsRedirectToAction()
+        public async Task Create_ValidClaim_RedirectsToIndex()
         {
             // Arrange
             var claim = new Claim
@@ -70,9 +72,9 @@ namespace Prog_Web_Application.Tests
             Assert.AreEqual("Index", redirectToActionResult.ActionName);
         }
 
-
+        // Test method for the CreateClaim action method with an invalid file type
         [TestMethod]
-        public async Task CreateClaim_InvalidFileType_ReturnsViewResult()
+        public async Task CreateClaim_InvalidFileType_ReturnsView()
         {
             // Arrange
             var claim = new Claim
@@ -96,11 +98,13 @@ namespace Prog_Web_Application.Tests
             Assert.IsInstanceOfType(result, typeof(ViewResult));
             var viewResult = (ViewResult)result;
             Assert.AreEqual("/Views/Home/NewClaim.cshtml", viewResult.ViewName);
+            // Check if the ModelState contains an error for the uploaded file
             Assert.IsTrue(viewResult.ViewData.ModelState.ContainsKey("uploadedFile"));
         }
 
+        // Test method for the CreateClaim action method with a file size exceeding the limit
         [TestMethod]
-        public async Task CreateClaim_NoFileUploaded_ReturnsRedirectToAction()
+        public async Task CreateClaim_NoFileUploaded_ReturnsRedirectToIndex()
         {
             // Arrange
             var controller = new ClaimController(_context, _loggerMock.Object);
@@ -125,6 +129,7 @@ namespace Prog_Web_Application.Tests
             Assert.AreEqual("Home", redirectResult.ControllerName);
         }
 
+        // Test method for the CreateClaim action method with a file size exceeding the limit
         [TestMethod]
         public async Task CreateClaim_FileSizeExceedsLimit_ReturnsViewResult()
         {
@@ -160,6 +165,7 @@ namespace Prog_Web_Application.Tests
             // Assert
             Assert.IsInstanceOfType(result, typeof(ViewResult), "Expected a ViewResult to be returned.");
             var viewResult = (ViewResult)result;
+            // Check if the view name is correct
             Assert.AreEqual("Test claim description", ((Claim)viewResult.Model).ClaimDescription); 
         }
     }

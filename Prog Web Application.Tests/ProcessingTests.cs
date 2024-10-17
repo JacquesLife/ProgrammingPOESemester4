@@ -38,6 +38,7 @@ namespace Prog_Web_Application.Tests
             _context.Dispose();
         }
 
+        // Test method for the Index action method
         [TestMethod]
         public async Task Index_ReturnsViewResult_WithClaims()
         {
@@ -75,6 +76,7 @@ namespace Prog_Web_Application.Tests
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.Model, typeof(List<Claim>));
             var model = result.Model as List<Claim>;
+            // Check if the model contains the expected number of claims
             Assert.AreEqual(2, model.Count);
         }
     }
