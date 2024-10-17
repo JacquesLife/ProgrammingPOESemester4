@@ -29,7 +29,7 @@ namespace Prog_Web_Application.Models
 
         public string ClaimDescription { get; set; }
 
-         public byte[]? uploadedFile { get; set; } // Use nullable byte array
+        public byte[]? uploadedFile { get; set; } // Byte array for Blob storage
 
         public int HoursWorked { get; set; }
 
@@ -37,7 +37,9 @@ namespace Prog_Web_Application.Models
 
         public DateTime submissionDate { get; set; }
 
-        public ClaimStatus Status { get; set; } = ClaimStatus.Pending; // Default to Pending
+        public string? FileName { get; set; } // Store file name with blob
+
+        public ClaimStatus Status { get; set; } = ClaimStatus.Pending; // Default is Pending
      
     }
 

@@ -6,7 +6,7 @@
 <div class="form-body">
     <div class="form-container">
         <h2 class="title">Submitted Claims</h2>
-        <div class="claims-list">
+        <div class="claims-list" style="max-height: 80vh; overflow-y: auto;">
             @if (Model != null && Model.Any())
             {
                 @foreach (var claim in Model)
@@ -45,46 +45,5 @@
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Track button functionality
-            $('.track-button').click(function() {
-                var claimId = $(this).data('claim-id');
-                $('.claim-item[data-claim-id="' + claimId + '"] .claim-details').toggle();
-            });
-
-            // Approve button functionality
-            $('.approve-button').click(function() {
-                var claimId = $(this).data('claim-id');
-                updateClaimStatus(claimId, 'Approved');
-            });
-
-            // Reject button functionality
-            $('.reject-button').click(function() {
-                var claimId = $(this).data('claim-id');
-                updateClaimStatus(claimId, 'Rejected');
-            });
-            // JavaScript function to update the claim status
-            function updateClaimStatus(claimId, status) {
-                $.ajax({
-                    url: '/Processing/UpdateStatus',
-                    type: 'POST',
-                    data: { claimId: claimId, status: status },
-                    success: function(result) {
-                        if(result.success) {
-                            var claimItem = $('.claim-item[data-claim-id="' + claimId + '"]');
-                            claimItem.find('.status-pending').removeClass('status-pending').addClass('status-' + status.toLowerCase()).text(status);
-                            claimItem.find('.approve-button, .reject-button').remove();
-                            alert('Claim status updated successfully!');
-                        } else {
-                            alert('Failed to update claim status. Please try again.');
-                        }
-                    },
-                    error: function() {
-                        alert('An error occurred while updating the claim status. Please try again.');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src="site.js"></script>
 }

@@ -86,6 +86,10 @@ namespace Prog_Web_Application.Database
                 .Property(c => c.Status)
                 .HasConversion<string>() 
                 .IsRequired(); // Set as required
+
+            modelBuilder.Entity<Claim>()
+                .Property(c => c.FileName)
+                .HasMaxLength(100); // Set max length for FileName
         }
     }
 }
