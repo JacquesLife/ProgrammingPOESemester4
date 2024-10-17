@@ -33,22 +33,27 @@ namespace Prog_Web_Application.Controllers
                 
                 if (existingUser != null)
                 {
-                    ModelState.AddModelError("Email", "Email is already in use."); // Add error for duplicate email
+                    // Add a model error if the email is already in use
+                    ModelState.AddModelError("Email", "Email is already in use."); 
                 }
                 else
                 {
-                    _context.Users.Add(user); // Add the user to the DbContext
-                    await _context.SaveChangesAsync(); // Save changes to the database
-                    return RedirectToAction("Index", "Home"); // Redirect to the home page after successful creation
+                    // Add the new user to the database
+                    _context.Users.Add(user);
+                    await _context.SaveChangesAsync(); 
+
+                    // Redirect to the Index action of the Home controller if successful
+                    return RedirectToAction("Index", "Home"); 
                 }
             }
-
-            return View("/Views/Home/NewUser.cshtml", user); // If model state is invalid, return to the same view
+            // Return the NewUser view with the user model if validation fails
+            return View("/Views/Home/NewUser.cshtml", user); 
         }
 
-        // Optionally, you can add a method to list users
+        // GET: User/Index
         public async Task<IActionResult> Index()
         {
+            // Get all users from the database
             var users = await _context.Users.ToListAsync(); 
             return View("/Views/Home/Index.cshtml", users); 
         }

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Prog_Web_Application.Models
 {
+    // User model
     public class User
     {
         public int Id { get; set; }
@@ -15,6 +16,7 @@ namespace Prog_Web_Application.Models
         public string Role { get; set; } 
     }
 
+    // Claim model
     public class Claim
     {
         public int ClaimID { get; set; }
@@ -43,6 +45,7 @@ namespace Prog_Web_Application.Models
      
     }
 
+    // Claim status enum
     public enum ClaimStatus
     {
         Pending,
