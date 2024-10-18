@@ -22,6 +22,8 @@
                                 <p><span class="label">Email:</span> <span class="value">@claim.Email</span></p>
                                 <p><span class="label">Hours Worked:</span> <span class="value">@claim.HoursWorked</span></p>
                                 <p><span class="label">Hourly Rate:</span> <span class="value">@claim.HourlyRate.ToString("C")</span></p>
+                                <p><span class="label">Additional Notes:</span> <span class="value">@(!string.IsNullOrEmpty(claim.AdditionalNotes) ? claim.AdditionalNotes : "No additional notes")</span></p>
+                                <p><span class="label">File Name:</span> <span class="value">@(!string.IsNullOrEmpty(claim.FileName) ? claim.FileName : "No file attached")</span></p> 
                             </div>
                         </div>
                         <div class="claim-actions">

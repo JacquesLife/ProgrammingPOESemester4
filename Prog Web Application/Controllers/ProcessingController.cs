@@ -1,3 +1,11 @@
+/// <summary>
+/// This controller is responsible for processing claims. It retrieves claims from the database and allows the user to update the status of a claim.
+/// <remarks>
+/// tdykstra (2023). Handle errors in ASP.NET Core. [online] learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-8.0.
+/// Hassan, Z.U. (2024). Action Result In ASP.NET MVC. [online] C-sharpcorner.com. Available at: https://www.c-sharpcorner.com/article/action-result-in-asp-net-mvc/.
+/// </remarks>
+/// </summary>
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prog_Web_Application.Database;
@@ -19,7 +27,12 @@ namespace Prog_Web_Application.Controllers
             _logger = logger;
         }
 
-        // GET: Processing
+        /// <summary>
+        /// This method retrieves a list of claims from the database and passes them to the Processing view.
+        /// <remarks>
+        /// Hassan, Z.U. (2024). Action Result In ASP.NET MVC. [online] C-sharpcorner.com. Available at: https://www.c-sharpcorner.com/article/action-result-in-asp-net-mvc/.
+        /// </remarks>
+        /// </summary>
         public async Task<IActionResult> Index()
         {
             // Log information about the action
@@ -67,3 +80,5 @@ namespace Prog_Web_Application.Controllers
         }
     }
 }
+
+// --------------------------------------------**End of File**--------------------------------------------------------

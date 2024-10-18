@@ -1,3 +1,11 @@
+/// <summary>
+/// This file contains the main entry point for the application. 
+/// It configures the application and sets up the database connection.
+/// <remarks>
+/// <remarks>
+/// TutorialBrain (2022). How to Run SQLITE in Visual Studio Code. [online] YouTube. Available at: https://www.youtube.com/watch?v=JrAiefGNUq8.
+/// <summary>
+
 using Microsoft.EntityFrameworkCore;
 using Prog_Web_Application.Database;
 using Prog_Web_Application.Models;
@@ -44,3 +52,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+// --------------------------------------------**End of File**--------------------------------------------------------

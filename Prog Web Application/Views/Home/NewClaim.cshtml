@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <!-- Claim submission form container -->
     <div class="form-body">
     <div class="form-container">
         <div class="title">Claim Submission</div>
@@ -46,6 +45,11 @@
                     <div class="input-box">
                         <input type="number" step="0.01" asp-for="HourlyRate" placeholder="Enter your hourly rate" required>
                         <span asp-validation-for="HourlyRate" class="text-danger"></span>
+                    </div>
+                    <div class="input-box">
+                        <label for="AdditionalNotes">Additional Notes</label>
+                        <textarea class="form-control" asp-for="AdditionalNotes" placeholder="Enter additional notes or comments" rows="3"></textarea>
+                        <span asp-validation-for="AdditionalNotes" class="text-danger"></span>
                     </div>
                     <div class="input-box">
                         <label for="file-upload" class="file-upload-label">Choose File</label>

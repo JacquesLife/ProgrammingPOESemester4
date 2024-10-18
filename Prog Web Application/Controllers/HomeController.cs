@@ -1,3 +1,10 @@
+///<summary>
+/// This is a standard home controller it is responsible for rendering the views for the home page, 
+/// new claim page, processing page, new user page and error page.
+/// It also has a method to get the claims from the processing controller and pass them to the processing view.
+/// The processing view will display the claims in a table.
+///</summary>
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Prog_Web_Application.Models;
@@ -56,3 +63,5 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+
+// --------------------------------------------**End of File**--------------------------------------------------------

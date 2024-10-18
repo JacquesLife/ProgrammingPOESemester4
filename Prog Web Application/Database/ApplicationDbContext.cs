@@ -1,3 +1,12 @@
+/// <summary>
+/// This class represents the application's database context. It inherits from DbContext and provides properties for accessing the User and Claim entities.
+/// It is also responsible for configuring the database schema and entity properties.
+/// It is required to perform successful migrations and updates to the database.
+/// <remarks>
+/// TutorialBrain (2022). How to Run SQLITE in Visual Studio Code. [online] YouTube. Available at: https://www.youtube.com/watch?v=JrAiefGNUq8.
+/// <remarks>
+/// </summary>
+
 using System;
 using Microsoft.EntityFrameworkCore;
 using Prog_Web_Application.Models;
@@ -14,7 +23,7 @@ namespace Prog_Web_Application.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Claim> Claims { get; set; }
 
-        // Optional: Override OnModelCreating for additional configuration
+        // Configure the database schema and entity properties
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -90,8 +99,12 @@ namespace Prog_Web_Application.Database
             modelBuilder.Entity<Claim>()
                 .Property(c => c.FileName)
                 .HasMaxLength(100); // Set max length for FileName
+
+            modelBuilder.Entity<Claim>()
+                .Property(c => c.AdditionalNotes)
+                .HasMaxLength(200); 
         }
     }
 }
 
-            
+// --------------------------------------------**End of File**--------------------------------------------------------

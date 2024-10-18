@@ -1,3 +1,11 @@
+/// <summary>
+/// This controller is responsible for handling user-related actions, such as creating a new user and displaying all users.
+/// 
+/// <remarks>
+/// Rick-Anderson (2022). Model validation in ASP.NET Core MVC. [online] learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0.
+/// </remarks>
+/// </summary>
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prog_Web_Application.Database;
@@ -21,7 +29,14 @@ namespace Prog_Web_Application.Controllers
             return View("/Views/Home/NewUser.cshtml"); 
         }
 
-      // POST: User/CreateUser
+        /// <summary>
+        /// This method is responsible for creating a new user in the database. It receives a User object and adds it to the Users table.
+        /// When successful, it redirects to the Index action of the Home controller.
+        /// When validation fails, it returns the NewUser view with the user model.
+        /// <remarks>
+        /// Rick-Anderson (2022). Model validation in ASP.NET Core MVC. [online] learn.microsoft.com.
+        /// <remarks>
+        /// <summary>
         [HttpPost]
         public async Task<IActionResult> CreateUser(User user)
         {
@@ -59,3 +74,5 @@ namespace Prog_Web_Application.Controllers
         }
     }
 }
+
+// --------------------------------------------**End of File**--------------------------------------------------------

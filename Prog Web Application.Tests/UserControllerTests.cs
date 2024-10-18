@@ -1,3 +1,14 @@
+///<summary
+/// This file contains the test methods for the UserController class.
+/// It tests the CreateUser action method with different scenarios.
+/// The test are intialised with an in-memory database and the controller is tested with valid and invalid models.
+/// Tests are cleaned up by deleting the in-memory database after each test.
+/// <remarks>
+/// Keep it simple, stupid. (2023). Unit testing in C# .NET with MSTest & Moq. [online] YouTube. Available at: https://www.youtube.com/watch?v=7UFjv_l0nfo.
+/// ncarandini (2023). Unit testing C# with MSTest and .NET - .NET. [online] learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest.
+/// <remarks>
+///<summary
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Prog_Web_Application.Controllers;
@@ -97,3 +108,5 @@ namespace Prog_Web_Application.Tests
         }
     }
 }
+
+// --------------------------------------------**End of File**--------------------------------------------------------

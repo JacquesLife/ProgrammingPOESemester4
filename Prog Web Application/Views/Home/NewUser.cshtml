@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <!-- User creation form container -->
     <div class="form-body">
         <div class="form-container">
             <div class="title">Sign Up</div>
@@ -47,8 +46,10 @@
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
                         <div class="input-box">
-                            <span class="details">Role</span>
-                            <input asp-for="Role" required placeholder="Enter user role" />
+                            <label asp-for="Role" class="form-label">Select Role</label>
+                            <select asp-for="Role" class="form-control" asp-items="@(new SelectList(new[] { "Academic Manager", "Programme Coordinator", "Lecturer" }))" required>
+                                <option value="">Please select a role</option> 
+                            </select>
                             <span asp-validation-for="Role" class="text-danger"></span>
                         </div>
                     </div>
