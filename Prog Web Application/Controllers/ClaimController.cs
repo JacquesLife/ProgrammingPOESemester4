@@ -20,129 +20,81 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace Prog_Web_Application.Controllers
 {
+    [Authorize]
     public class ClaimController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ClaimController> _logger;
-
-        // List of allowed file extensions and maximum file size
         private readonly string[] allowedExtensions = { ".pdf", ".docx", ".xlsx", ".txt", ".md" };
-        private const int maxFileSizeBytes = 10 * 1024 * 1024; // 10 MB
+        private const int maxHours = 70;
+        private const int maxFileSizeBytes = 10 * 1024 * 1024; 
 
-        // Constructor with ApplicationDbContext and ILogger parameters
         public ClaimController(ApplicationDbContext context, ILogger<ClaimController> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        /// <summary>
-        /// This method is responsible for creating a new claim in the database. 
-        /// It receives a Claim object and an optional IFormFile object representing an uploaded file.
-        /// </summary>
         [HttpPost]
-        public async Task<IActionResult> CreateClaim(Claim claim, IFormFile? uploadedFile)
+        public async Task<IActionResult> CreateClaim(Models.Claim claim, IFormFile? uploadedFile)
         {
-            _logger.LogInformation("CreateClaim method called");
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                claim.FullName ??= user.FullName;
+                claim.Email ??= user.Email;
+                claim.Phone ??= user.PhoneNumber;
+            }
 
             if (uploadedFile != null)
             {
-                _logger.LogInformation($"File uploaded: Name = {uploadedFile.FileName}, Size = {uploadedFile.Length} bytes");
-
-                // Validate file extension
                 var fileExtension = Path.GetExtension(uploadedFile.FileName).ToLowerInvariant();
                 if (!allowedExtensions.Contains(fileExtension))
                 {
-                    ModelState.AddModelError("uploadedFile", "Invalid file type. Allowed types are: .pdf, .docx, .xlsx, .txt, .md");
+                    ModelState.AddModelError("uploadedFile", "Invalid file type.");
                     return View("/Views/Home/NewClaim.cshtml", claim);
                 }
 
-                // Validate file size
                 if (uploadedFile.Length > maxFileSizeBytes)
                 {
-                    ModelState.AddModelError("uploadedFile", "File size exceeds the limit of 10 MB.");
+                    ModelState.AddModelError("uploadedFile", "File size exceeds 10 MB.");
                     return View("/Views/Home/NewClaim.cshtml", claim);
                 }
 
-                try
-                {
-                    // Read the uploaded file into a memory stream
-                    using var memoryStream = new MemoryStream();
-                    await uploadedFile.CopyToAsync(memoryStream);
-                    claim.uploadedFile = memoryStream.ToArray();
-                    claim.FileName = uploadedFile.FileName;
-                    _logger.LogInformation($"File successfully processed. Size: {claim.uploadedFile.Length} bytes, Name: {claim.FileName}");
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error occurred while processing uploaded file");
-                    ModelState.AddModelError("", "Error occurred while processing the uploaded file. Please try again.");
-                    return View("/Views/Home/NewClaim.cshtml", claim);
-                }
-            }
-            else
-            {
-                claim.uploadedFile = null;
-                claim.FileName = null;
-                _logger.LogInformation("No file uploaded");
+                using var memoryStream = new MemoryStream();
+                await uploadedFile.CopyToAsync(memoryStream);
+                claim.UploadedFile = memoryStream.ToArray();
+                claim.FileName = uploadedFile.FileName;
             }
 
-            // Set the submission date to the current date and time
-            claim.submissionDate = DateTime.Now;
-
-            // Default status of the claim is set to "Pending"
-            claim.Status = ClaimStatus.Pending;
-
-            // Check if the model state is valid
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("Invalid ModelState when creating claim");
-                foreach (var modelState in ModelState.Values)
-                {
-                    foreach (var error in modelState.Errors)
-                    {
-                        _logger.LogWarning($"Model error: {error.ErrorMessage}");
-                    }
-                }
-                return View("/Views/Home/NewClaim.cshtml", claim);
-            }
-
-            // Check for duplicate email before saving
-            var emailExists = await _context.Claims.AnyAsync(c => c.Email == claim.Email);
-            if (emailExists)
-            {
-                ModelState.AddModelError(nameof(claim.Email), "This email is already in use.");
-                return View("/Views/Home/NewClaim.cshtml", claim);
-            }
-
-            // Check for duplicate phone number before saving
-            var phoneExists = await _context.Claims.AnyAsync(c => c.Phone == claim.Phone);
-            if (phoneExists)
-            {
-                ModelState.AddModelError(nameof(claim.Phone), "This phone number is already in use.");
-                return View("/Views/Home/NewClaim.cshtml", claim);
-            }
+            claim.SubmissionDate = DateTime.Now;
+            claim.Status = (claim.HoursWorked < 1 || claim.HoursWorked > maxHours || claim.TotalAmount > 100000) // Max amount is R100,000
+                ? ClaimStatus.Rejected 
+                : ClaimStatus.Pending;
 
             try
             {
-                // Add the claim to the database and save changes
                 _context.Claims.Add(claim);
                 await _context.SaveChangesAsync();
-                _logger.LogInformation($"Claim saved successfully. File name: {claim.FileName}");
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "An error occurred while saving the claim");
-                ModelState.AddModelError("", "Unable to save changes.");
+                _logger.LogError(ex, "Error saving claim");
+                ModelState.AddModelError("", "Unable to save claim.");
                 return View("/Views/Home/NewClaim.cshtml", claim);
             }
         }
     }
 }
-
-// --------------------------------------------**End of File**--------------------------------------------------------

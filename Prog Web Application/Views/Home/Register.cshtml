@@ -1,0 +1,52 @@
+@model Prog_Web_Application.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="form-body">
+    <div class="form-container">
+        <div class="title">Register New Account</div>
+        <div class="content">
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <input asp-for="Email" type="email" required placeholder="Enter email address" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="input-box">
+                        <input asp-for="UserName" required placeholder="Enter username" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="input-box">
+                        <input asp-for="PhoneNumber" type="tel" placeholder="Enter phone number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <select asp-for="Role" class="form-control" required>
+                            <option value="Lecturer">Lecturer</option>
+                            <option value="Academic Manager">Academic Manager</option>
+                            <option value="Program Coordinator">Program Coordinator</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <div class="input-box">
+                        <input asp-for="Password" type="password" required placeholder="Enter password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="input-box">
+                        <input asp-for="ConfirmPassword" type="password" required placeholder="Confirm password" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -5,7 +5,7 @@
 namespace Prog_Web_Application.Migrations
 {
     /// <inheritdoc />
-    public partial class databaseValidation : Migration
+    public partial class ImprovedEntityConfigurations2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -5,7 +5,7 @@
 namespace Prog_Web_Application.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateClaimModel_v2 : Migration
+    public partial class RemoveUserIdFromClaim : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

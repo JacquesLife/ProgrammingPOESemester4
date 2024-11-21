@@ -1,6 +1,13 @@
 @model IEnumerable<Prog_Web_Application.Models.Claim>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Processing";
+
+    // Check if the user is a Lecturer
+    var currentUser = await UserManager.GetUserAsync(User);
+    var userRoles = await UserManager.GetRolesAsync(currentUser);
+    bool isLecturer = userRoles.Contains("Lecturer"); 
 }
 
 <div class="form-body">
@@ -16,19 +23,21 @@
                         <div class="claim-content">
                             <p class="claim-description">@claim.ClaimDescription</p>
                             <div class="claim-details" style="display: none;">
-                                <p><span class="label">Submitted on:</span> <span class="value">@claim.submissionDate.ToString("MMMM d, yyyy")</span></p>
+                                <p><span class="label">Submitted on:</span> <span class="value">@claim.SubmissionDate.ToString("MMMM d, yyyy")</span></p>
                                 <p><span class="label">Status:</span> <span class="value status-@claim.Status.ToString().ToLower()">@claim.Status</span></p>
                                 <p><span class="label">Name:</span> <span class="value">@claim.FullName</span></p>
                                 <p><span class="label">Email:</span> <span class="value">@claim.Email</span></p>
                                 <p><span class="label">Hours Worked:</span> <span class="value">@claim.HoursWorked</span></p>
                                 <p><span class="label">Hourly Rate:</span> <span class="value">@claim.HourlyRate.ToString("C")</span></p>
+                                <p><span class="label">Total Claim:</span> <span class="value">@((claim.HoursWorked * claim.HourlyRate).ToString("C"))</span></p> 
                                 <p><span class="label">Additional Notes:</span> <span class="value">@(!string.IsNullOrEmpty(claim.AdditionalNotes) ? claim.AdditionalNotes : "No additional notes")</span></p>
                                 <p><span class="label">File Name:</span> <span class="value">@(!string.IsNullOrEmpty(claim.FileName) ? claim.FileName : "No file attached")</span></p> 
                             </div>
                         </div>
                         <div class="claim-actions">
                             <button class="btn btn-primary track-button" data-claim-id="@claim.ClaimID">Track</button>
-                            @if (claim.Status == Prog_Web_Application.Models.ClaimStatus.Pending)
+                            
+                            @if (!isLecturer && claim.Status == Prog_Web_Application.Models.ClaimStatus.Pending) // Hide buttons for Lecturers
                             {
                                 <button class="btn btn-success approve-button" data-claim-id="@claim.ClaimID">Approve</button>
                                 <button class="btn btn-danger reject-button" data-claim-id="@claim.ClaimID">Reject</button>

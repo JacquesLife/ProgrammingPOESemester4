@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Prog_Web_Application.Database;
 
@@ -10,9 +11,11 @@ using Prog_Web_Application.Database;
 namespace Prog_Web_Application.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241120112222_UpdateClaimDataTypes")]
+    partial class UpdateClaimDataTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -197,7 +200,9 @@ namespace Prog_Web_Application.Migrations
                         .HasColumnType("BLOB");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ClaimID");
 
@@ -331,9 +336,13 @@ namespace Prog_Web_Application.Migrations
 
             modelBuilder.Entity("Prog_Web_Application.Models.Claim", b =>
                 {
-                    b.HasOne("Prog_Web_Application.Models.User", null)
+                    b.HasOne("Prog_Web_Application.Models.User", "User")
                         .WithMany("Claims")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Prog_Web_Application.Models.User", b =>
