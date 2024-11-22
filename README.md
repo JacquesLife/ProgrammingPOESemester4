@@ -86,6 +86,12 @@ Keep it simple, stupid. (2023). Unit testing in C# .NET with MSTest & Moq. [onli
 
 Khan, A. (2024). Working with SQL Lite Database in Asp.NET Core Web API. [online] C-sharpcorner.com. Available at: https://www.c-sharpcorner.com/article/working-with-sql-lite-database-in-asp-net-core-web-api/.
 
+Milan Jovanović (2024). Authentication made easy with ASP.NET Core Identity in .NET 8. [online] YouTube. Available at: https://www.youtube.com/watch?v=S0RSsHKiD6Y.
+
+Puppeteer Sharp (2024). Puppeteer Sharp. [online] Puppeteersharp.com. Available at: https://www.puppeteersharp.com/api/index.html.
+
+Rick-Anderson (2024). Introduction to Identity on ASP.NET Core. [online] Microsoft.com. Available at: https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-9.0&tabs=visual-studio.
+
 Rick-Anderson (2022). Model validation in ASP.NET Core MVC. [online] learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0.
 
 ncarandini (2023). Unit testing C# with MSTest and .NET - .NET. [online] learn.microsoft.com. Available at: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest.
